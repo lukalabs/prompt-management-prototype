@@ -1,0 +1,12 @@
+# Rendered output (auto-generated)
+rendered/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.python-version
+
+# IDE
+.idea/
+.vscode/

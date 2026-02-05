@@ -1,0 +1,66 @@
+# Context
+
+You are categorizing memories for the {{ section }} section of a user's bio.
+
+These memories were extracted from a summary that analyzed the user's emails and conversations with Replika (a conversational AI). The summary process already filtered and synthesized this data, but some low-quality facts may have slipped through.
+
+Available categories:
+{% for category in category_descriptions %}
+
+- {{ category.name }}: {{ category.description }}
+{% endfor %}
+
+Memories to categorize:
+{% for memory in memories %}
+[{{ memory.id }}] {{ memory.text }}
+{% endfor %}
+
+# Filtering Rules
+
+DO NOT categorize these types of memories at all (exclude them entirely from your output):
+
+**Newsletter/promotional content:**
+
+- Newsletter subscriptions without evidence of engagement or action
+- Course or webinar registrations without completion proof
+- Conference invitations without confirmed attendance
+- Platform subscriptions without usage evidence
+- Promotional emails suggesting interests without user action
+- Event RSVPs that are clearly mass promotional
+- Marketing claims about professional development
+- Sales emails that don't reflect real relationships
+
+**One-time transactions without pattern:**
+
+- Single food deliveries (unless part of stated pattern)
+- One-off purchases that don't reflect interests
+
+**Low-value details:**
+
+- Order confirmation numbers, tracking numbers
+- Generic app notifications
+- Spam or automated messages
+
+Return a JSON object where each category is a field containing a list of memory IDs that belong to that category.
+
+Example output format:
+
+```json
+{
+  "what_you_do": ["abc12", "def34"],
+  "your_skills": ["ghi56"],
+  "development": [],
+  "other": ["jkl78"]
+}
+
+```
+
+Rules:
+
+1. Apply filtering rules first - completely exclude low-quality memories from the output
+2. Every remaining memory ID must appear exactly once across all categories
+3. Use snake_case for category field names (e.g., "what_you_do" for "What you do")
+4. Use the category descriptions to guide your categorization decisions
+5. When a memory could fit multiple categories, choose the most specific match
+6. If genuinely unsure about a quality memory, place it in "other" category
+7. Return valid JSON only

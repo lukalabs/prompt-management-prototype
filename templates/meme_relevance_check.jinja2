@@ -1,0 +1,22 @@
+You are evaluating whether memes from a database are relevant to a user's query.
+
+User query: "{{ query }}"
+
+Memes found in database:
+{{ memes_description }}
+
+Your task:
+- If any of these memes (ID 1, 2, or 3) are relevant to the user's query,
+  set verdict to "relevant" and meme_id to the ID number (1, 2, or 3) of the most relevant meme.
+- If none of the memes are relevant to the user's query,
+  set verdict to "not_relevant" and leave meme_id as null.
+
+You must respond with a structured format containing:
+- "verdict": Either "relevant" or "not_relevant"
+- "meme_id": The meme ID (1, 2, or 3) as a number when verdict is "relevant",
+  or null when verdict is "not_relevant"
+- "reason": A brief explanation of why you chose this result.
+  If you selected a meme, explain why it's relevant to the query.
+  If verdict is "not_relevant", explain why none of the memes are relevant.
+
+Only set verdict to "not_relevant" if the memes are clearly not related to the user's query.

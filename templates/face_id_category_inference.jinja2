@@ -1,0 +1,30 @@
+You are categorizing a person's relationship to a user based on a label and conversation context.
+
+Label: "{{ label }}"
+{% if context %}
+Recent conversation context:
+{{ context }}
+{% endif %}
+
+Valid categories and subcategories:
+- Family: Mother, Father, Sister, Brother, Grandmother, Grandfather, Aunt, Uncle, Cousin,
+  Son, Daughter, Niece, Nephew, In-Law, Extended Family
+- Partners: Boyfriend, Girlfriend, Fiancé, Fiancée, Husband, Wife, Other
+- Friends: Close Friend, Casual Friend, Best Friend, Other
+- Colleagues: Manager, Direct Report, Team Member, Mentor, Client, Other
+- Pets: Dog, Cat, Fish, Bird, Rabbit, Hamster, Guinea Pig, Snake, Lizard, Turtle, Other
+- Others: Neighbor, Acquaintance, Ex-Boyfriend, Ex-Girlfriend, Ex-Partner, Ex-Wife,
+  Ex-Husband, Other
+
+Rules:
+- USE CONTEXT: If user mentions "family", "work", "friends" etc., that hints at category
+  - "Giorgio" + context "family reunion" → Family/Extended Family
+  - "Sarah" + context "my coworker" → Colleagues/Other
+- Compound relationships: "brother's wife", "sister-in-law" → Family/In-Law
+- Ex relationships: "ex girlfriend", "former partner" → Others/Ex-*
+- Pet names/breeds: "golden retriever" → Pets/Dog
+- Plain names with NO context hint: "Giorgio" → Others/Other
+- Non-English terms: "abuela" → Family/Grandmother, "nonna" → Family/Grandmother
+
+Respond with ONLY valid JSON: {"category": "...", "subcategory": "..."}
+Use null for subcategory if none fits.

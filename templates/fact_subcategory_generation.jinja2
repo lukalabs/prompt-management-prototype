@@ -1,0 +1,15 @@
+Categorize this {{ category }} fact into the most appropriate subcategory.
+
+**Available subcategories:**
+{% for cat in category_descriptions %}
+- {{ cat.name }}: {{ cat.description }}
+{% endfor %}
+
+**Fact:** {{ fact_content }}
+
+Return JSON with `category` and `subcategory` fields. Use "Other" only if no specific category fits.
+
+Example:
+```json
+{"subcategory": "<one-of-the-category-specific-options>"}
+```

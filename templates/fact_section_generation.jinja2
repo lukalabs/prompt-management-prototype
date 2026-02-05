@@ -1,0 +1,57 @@
+# Context
+
+You are categorizing facts about a person into appropriate categories and subcategories of their bio.
+
+Available categories and subcategories:
+
+**Category 1 — career**
+
+- what_you_do: Current professional situation: job title, employer/company name, role responsibilities, business ownership, student status, primary work projects, team management, freelance work (if primary activity)
+- your_skills: Professional abilities and expertise: technical skills, specialized knowledge, demonstrated competencies, professional strengths, languages used for work, certifications already earned
+- development: Learning and education: courses currently taking, degree programs enrolled in, training programs, professional development activities, certifications in progress, completed educational milestones
+
+**Category 2 — lifestyle**
+
+- health: Physical and mental wellbeing: fitness activities and routines, medical information, therapy or mental health practices, wellness activities, diet for health reasons, self-care practices
+- daily_life: Routines and habits: time-of-day patterns (early riser, night owl), regular activities, services frequently used (delivery, transportation), household activities, work patterns (remote, commute), recurring social activities
+- home: Location and places: city/neighborhood where they live, housing situation (rent/own, apartment/house), travel activities, transportation methods, places frequently visited, moving or relocation
+
+**Category 3 — personality**
+
+- core_self: Fundamental identity: core values and beliefs, what matters most to them, principles they live by, causes they care about, how they identify themselves, moral/ethical stances
+- traits: Personality characteristics: behavioral tendencies (organized, spontaneous, cautious), social style (introverted, outgoing), communication preferences, strengths and weaknesses, consistent behavior patterns
+- interests: Hobbies and activities: recreational activities they engage in, creative pursuits, content they create, things they collect, clubs or groups they participate in, topics they're passionate about
+- preferences: Likes and dislikes: favorite foods/restaurants/cuisines, aesthetic preferences (minimalist, colorful), brand preferences, style choices, things they avoid, time-of-day preferences for activities
+
+**Category 4 — life_story**
+
+- background: Origins and upbringing: where they grew up, family background, childhood circumstances, cultural heritage, immigration history, early education, formative early experiences
+- big_moments: Positive past milestones: achievements, promotions, graduations, marriages/partnerships beginning, births, publications, awards, major purchases (house, car), celebrations, successful completions
+- tough_times: Past challenges: difficulties overcome, struggles faced, setbacks experienced, challenging transitions navigated
+- personal_growth: Evolution and learning: how they've changed over time, lessons learned, perspective shifts, skills developed from experience, transitions in identity or approach, how past experiences shaped them
+
+**Category 5 — future_plans**
+
+- life_goals: Personal life aspirations: relationship goals, family planning, desired lifestyle changes, personal milestones wanted, health goals, places they want to live, personal transformations they seek
+- career_goals: Professional aspirations: desired promotions or role changes, career pivots planned, professional skills to develop, companies they want to work for, business ventures planned, industry changes desired
+- coming_up: Scheduled future events: trips booked, events with dates, planned celebrations, confirmed appointments, deadlines approaching, scheduled meetings, reserved activities
+- someday: Long-term dreams: bucket list items, aspirational travel, distant hopes, things they'd "like to" do eventually, exploratory ideas, wild dreams without concrete plans
+
+Fact to categorize:
+{{ fact_content }}
+
+# Instructions
+
+Analyze the fact and determine:
+
+1. Which main category it belongs to (career, lifestyle, personality, life_story, or future_plans)
+2. Which subcategory within that category best fits the fact
+
+When a fact could fit multiple subcategories, choose the most specific match.
+
+**CRITICAL:** ALWAYS Return a JSON object with both the category and subcategory:
+
+{
+"category": "category_name",
+"subcategory": "subcategory_name"
+}

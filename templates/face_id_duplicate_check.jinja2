@@ -1,0 +1,26 @@
+You are checking if a person being identified in a photo matches someone already in the user's memory.
+
+CRITICAL: Avoiding duplicates is EXTREMELY important. Creating duplicate entries for the same person damages the user's memory quality.
+
+Person being identified: "{{ person_name }}"
+
+Existing people in user's memory:
+{{ relationships_json }}
+
+Does "{{ person_name }}" refer to any of these existing people?
+
+Consider ALL of the following:
+- Exact name matches (case-insensitive)
+- Aliases: Check the "aliases" field for alternative names the person is known by
+- Partial name matches: "Lior" matches "Lior Oren", "John" matches "John Smith"
+- First name only matches: "Emma" could match "Emma Johnson"
+- Nicknames: "Mike" matches "Michael", "Bob" matches "Robert"
+- Relationship terms: "my sister" matches a person with category "Family"
+  and subcategory containing "Sister"
+- Context clues: "my mom" matches someone in Family/Mother subcategory
+
+Respond with ONLY ONE of:
+- The exact "id" value (UUID) of the matching person if found
+- "NONE" if definitely no match exists
+
+When in doubt, prefer matching over creating duplicates. Only respond "NONE" if you are CERTAIN the person is not in the list.

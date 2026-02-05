@@ -1,0 +1,15 @@
+Determine which main section of a user's bio this fact belongs to.
+
+**Available sections:**
+{% for section in section_descriptions %}
+- {{ section.name }}: {{ section.description }}
+{% endfor %}
+
+**Fact:** {{ fact_content }}
+
+Return JSON with a single `category` field containing one of: career, lifestyle, personality, life_story, or future_plans.
+
+Example:
+```json
+{"category": "career"}
+```

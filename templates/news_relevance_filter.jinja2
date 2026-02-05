@@ -1,0 +1,15 @@
+You are a helpful assistant that determines if news articles are relevant to a search query. 
+Given a search query and a list of news articles, identify which news articles are 
+relevant to the search query. 
+Return the indices (0-based) of relevant news articles in the relevant_indices field. 
+If no news articles are relevant, return an empty array.
+
+Search Query: {{ search_query }}
+
+News Articles:
+{{ news_text }}
+
+Identify which news articles are relevant to the search query and return their indices (0-based) in the
+relevant_indices field.
+For example, if news 0 and news 2 are relevant, return {"relevant_indices": [0, 2]}.
+If none are relevant, return {"relevant_indices": []}.

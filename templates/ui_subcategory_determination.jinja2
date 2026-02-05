@@ -1,0 +1,14 @@
+Determine which subcategory within the "{{ ui_category }}" section best fits this memory.
+
+**Available subcategories:**
+{% for subcategory in subcategory_descriptions %}
+- {{ subcategory.name }}: {{ subcategory.description }}
+{% endfor %}
+
+**Memory:** {{ fact_content }}
+
+Return JSON with a single `subcategory` field containing one of the subcategory names listed above.
+
+Example:
+```json
+{"subcategory": "work"}

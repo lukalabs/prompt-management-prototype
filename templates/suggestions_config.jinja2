@@ -1,0 +1,21 @@
+history_message_count: 30
+
+inactivity_minutes: 30
+
+turns_since_last: 3
+ 
+pause_topic_turns: 8
+
+suggestion_life_hours: 24
+
+**Explanations:**
+*   `history_message_count`: Number of messages from the conversation history
+    injected into the suggestions generation prompt.
+*   `inactivity_minutes`: Number of minutes since the last message to trigger
+    suggestions generation.
+*   `turns_since_last`: Number of conversation turns since the last selected
+    suggestion to trigger suggestions generation.
+*   `pause_topic_turns`: Number of conversation turns to stop changing the topic
+    when a suggestion topic is selected.
+*   `suggestion_life_hours`: Number of hours the suggestions will live in
+    memory.

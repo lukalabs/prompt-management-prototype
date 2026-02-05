@@ -1,0 +1,29 @@
+Please merge the following {{ summaries | length }} summaries.
+
+{% if summaries | length == 2 %}
+
+THE MOST UP-TO-DATE INFO SUMMARY (Summary 1) contains the most current information and should be prioritized during the merge.
+
+PREVIOUS SUMMARY (Summary 2) contains older information.
+
+{% else %}
+
+THE MOST UP-TO-DATE INFO SUMMARY (Summary 1) contains the most current information and should be prioritized during the merge.
+
+Subsequent summaries (Summary 2, Summary 3, etc.) contain older information and should be referred to as "PREVIOUS SUMMARY 1", "PREVIOUS SUMMARY 2", etc.
+
+{% endif %}
+
+{% for summary in summaries %}
+
+{% if not loop.first %}
+
+{% endif %}
+
+===== {% if loop.first %}THE MOST UP-TO-DATE INFO SUMMARY{% elif summaries | length == 2 %}PREVIOUS SUMMARY{% else %}PREVIOUS SUMMARY {{ loop.index0 }}{% endif %} =====
+
+{{ summary }}
+
+{% endfor %}
+
+Please merge them following all the rules above, prioritizing the information from THE MOST UP-TO-DATE INFO SUMMARY.
