@@ -8,32 +8,36 @@ Jinja2-based prompt templating with variable inheritance and live preview.
 uv sync
 ```
 
+## Folder Structure
+
+```
+prompts/
+├── templates/              # Jinja2 templates
+│   └── intent_planner.jinja2
+├── variables/
+│   └── intent_planner/
+│       ├── default.json        # Base variables
+│       └── picture_present.json  # Override variant
+├── rendered/               # Auto-generated output (gitignored)
+│   └── intent_planner/
+│       ├── default.md
+│       └── picture_present.md
+└── render.py
+```
+
 ## Usage
 
 ```bash
-# Watch specific templates (recommended)
-uv run render.py intent_planner --watch
-uv run render.py intent_planner llm_prompt --watch
-
-# Render once
-uv run render.py intent_planner
-uv run render.py intent_planner:default  # specific variant
-
-# List all templates
-uv run render.py --list
+uv run render.py --list                         # List templates/variants
+uv run render.py                                # Render all
+uv run render.py intent_planner                 # Render one template (all variants)
+uv run render.py intent_planner:picture_present # Render specific variant
+uv run render.py intent_planner --watch         # Watch mode (recommended for 1-2 templates)
 ```
 
-## How it works
+## Features
 
-```
-templates/intent_planner.jinja2    # Jinja2 template
-variables/intent_planner/
-  default.json                     # Base variables
-  image_generation.json            # Variant (overrides default)
-
-rendered/intent_planner/           # Output (gitignored)
-  default.md
-  image_generation.md
-```
-
-Watch mode auto-renders on save and shows diffs in terminal.
+- **Variable inheritance**: `default.json` merged with variant overrides
+- **Watch mode**: Auto-re-render on file changes with colorized terminal diffs
+- **Error handling**: Errors written inline to `.md` files
+- **Diff support**: Auto `.old` files for comparing changes
